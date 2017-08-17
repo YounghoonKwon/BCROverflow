@@ -1,17 +1,23 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
+  has_many :questions
+  has_many :answers, through: :questions
+
+  validates :username, presence: true, uniqueness: true
+  validates :first_name, presence:true
+  validates :last_name, presence:true
+  validates :email, presence:true, uniqueness: true
+
   include BCrypt
 
-  #We'll need to create validations and associations here
-
- def password
-    @password ||= Password.new(encrypted_password)
+  def password
+    @password ||= Password.new(hashed_password)
   end
 
   def password=(new_password)
     @password = Password.create(new_password)
-    self.encrypted_password = @password
+    self.hashed_password = @password
   end
 
   def self.authenticate(username,plain_text_password)
