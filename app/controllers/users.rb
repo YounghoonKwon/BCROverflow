@@ -6,12 +6,16 @@ get '/users' do
   redirect '/'
 end
 
-get '/users/:id' do
-  erb :'users/profile'
+get '/users/login' do
+  erb :'users/login'
 end
 
 get '/users/new' do
   erb :'users/new'
+end
+
+get '/users/:id' do
+  erb :'users/profile'
 end
 
 post '/users' do
@@ -37,8 +41,6 @@ post '/users' do
   redirect '/users/:id'
 end
 
-get '/users/login' do
-  erb :'users/login'
-end
+
 
 
