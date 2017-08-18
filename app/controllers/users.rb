@@ -26,7 +26,6 @@ post '/users' do
     user.valid?
     password_error = "Password can't be blank"
   else
-    user.password = user_info[:password]
     user.save
   end
 
