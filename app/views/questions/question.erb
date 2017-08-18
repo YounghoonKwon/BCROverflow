@@ -1,6 +1,19 @@
 <h1><%= @question.title %></h1>
 <h1><%= @question.body %></h1>
 <h1><%= @question.created_at %></h1>
+  <% if @question.answers.length != 0 %>
+  <ul><strong>Answer list</strong>
+  <% else %>
+  <ul><strong>Nobody answered to this question yet! wait fucker!!</strong>
+  <% end %>
+  <br>
+  <% @question.answers.each do |answer| %>
+  <li><%= answer.text %></li>
+  <li>created by: <%= answer.user.username %></li>
+  <li>created at: <%= answer.created_at %></li><br>
+  <% end %>
+</ul>
+
 
 <form action='/questions/<%=@question.id %>' method='POST'>
   <% if @question[:user_id] == session[:user_id] %>
