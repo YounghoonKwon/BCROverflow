@@ -1,8 +1,17 @@
 <h1><%= @question.title %></h1>
 <h1><%= @question.body %></h1>
 <h1><%= @question.created_at %></h1>
+
 <form action='/questions/<%=@question.id %>' method='POST'>
-  <input type="hidden"
-   value="delete">
-  <input type="submit" value="Delete this Question">
+  <% if @question[:user_id] == session[:user_id] %>
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete this Question">
+    <%end%>
+</form>
+
+<form action='/questions/<%=@question.id %>/edit' method='GET'>
+  <% if @question[:user_id] == session[:user_id] %>
+<!--     <input type="hidden" name="_method" value="put"> -->
+    <input type="submit" value="Edit this Question">
+    <%end%>
 </form>
