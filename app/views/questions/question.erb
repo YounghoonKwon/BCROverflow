@@ -4,11 +4,11 @@
 
 <h1>
   <div>
-    <form method="post" action='/question/<%= @question.id %>/upvote' class="inline">
+    <form method="post" action="/questions/<%= @question.id %>/upvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
     </form>
     THIS IS WHERE THE POINTS GO WITH JQUERY (use reduce)
-    <form method="post" action='/question/<%= @question.id %>/downvote' class="inline">
+    <form method="post" action="/questions/<%= @question.id %>/downvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button downvote-button"></button>
     </form>
   </div>

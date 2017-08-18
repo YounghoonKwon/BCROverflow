@@ -15,7 +15,6 @@ end
 
 get '/questions/:id' do
   @question = Question.find(params[:id])
-  # @user = User.find_by(id: @question.answers.first.user_id)
   erb :'questions/question'
 end
 
@@ -30,11 +29,11 @@ get '/questions/:id/edit' do
   erb :'questions/edit'
 end
 
-post '/question/:id/upvote' do
+post '/questions/:id/upvote' do
   # if session[:user_id] != nil
-    question = Question.find(params[:id])
-    question.votes.create(user_id: session[:user_id], value: 1)
-    redirect "/question/:id"
+    @question = Question.find(params[:id])
+    @question.votes.create(user_id: session[:user_id], value: 1)
+    redirect "/questions/#{@question.id}"
 
     #   if request.accept? 'application/json'
     #     question.votes.count.to_json
@@ -49,11 +48,11 @@ post '/question/:id/upvote' do
   # end
 end
 
-post '/question/:id/downvote' do
+post '/questions/:id/downvote' do
   # if session[:user_id] != nil
-    question = Question.find(params[:id])
-    question.votes.create(user_id: session[:user_id], value: -1)
-    redirect "/question/:id"
+    @question = Question.find(params[:id])
+    @question.votes.create(user_id: session[:user_id], value: -1)
+    redirect "/questions/#{@question.id}"
 
     #   if request.accept? 'application/json'
     #     question.votes.count.to_json
