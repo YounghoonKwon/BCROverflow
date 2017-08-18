@@ -20,10 +20,11 @@
 <body>
   <div>
     <nav>
-    <img src="image/bcroverflow-logo.png" style="width:266px;height:98px;">
+    <img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;">
       <ul class = "nav_bar">
         <li class = "nav_items"><a href="/">home</a></li>
         <% if logged_in? %>
+          <h1>current user: <%= @current_user.username %></h1>
           <li class = "nav_items"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
           <li class = "nav_items"><a href="/users/profile">account</a></li>
           <li class = "nav_items"><a href="/questions/new">ask a question</a></li>
