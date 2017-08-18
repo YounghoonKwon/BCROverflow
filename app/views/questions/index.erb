@@ -1,12 +1,12 @@
 <h1>QUESTIONS</h1>
 <div class='question list'>
   <% @questions.each do |question| %>
-    <question id="<%= question.id %>">
+
       <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
       <p>
-        <span class='username'><%= question.user_name %></span>
-        <span class='timestamp'><%= question.created_at %></span>
+        <span class='body'><%= question.body %></span>
+        <span class='created'><%= question.created_at %></span>
       </p>
-    </question>
+
   <% end %>
 </div>
