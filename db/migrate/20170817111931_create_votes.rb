@@ -5,7 +5,7 @@ class CreateVotes < ActiveRecord::Migration[5.1]
       t.integer :votable_id
       t.string :votable_type
 
-      t.timestamp
+      t.timestamps
     end
   end
 end
