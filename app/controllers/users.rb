@@ -8,7 +8,7 @@ end
 
 get '/users/login' do
   if logged_in?
-    redirect '/users/:id'
+    redirect '/users/profile'
   else
     erb :'users/login'
   end
@@ -34,7 +34,8 @@ post '/users/logout' do
   redirect '/users/login'
 end
 
-get '/users/:id' do
+get '/users/profile' do
+  @user = User.find(session[:user_id])
   erb :'users/profile'
 end
 
@@ -50,7 +51,6 @@ post '/users' do
     user.save
   end
 
-
   if user.persisted?
     session[:user_id] = user.id
     redirect '/users'
@@ -59,7 +59,7 @@ post '/users' do
     report_create_errors(errors)
   end
 
-  redirect '/users/:id'
+  redirect "/users/profile"
 end
 
 
