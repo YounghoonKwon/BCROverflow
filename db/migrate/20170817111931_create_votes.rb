@@ -7,7 +7,7 @@ class CreateVotes < ActiveRecord::Migration[5.1]
       t.integer :value
       #alasdjalkdjasl;kdjasjkcaskjdsadjas;djask;lj
 
-      t.timestamp
+      t.timestamps
     end
   end
 end
