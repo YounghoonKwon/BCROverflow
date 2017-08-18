@@ -3,7 +3,7 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   has_many :questions
   has_many :answers, through: :questions
-  has many :votes
+  has_many :votes
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence:true
