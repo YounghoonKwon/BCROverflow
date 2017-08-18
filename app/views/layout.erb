@@ -26,6 +26,7 @@
         <% if logged_in? %>
           <li class = "nav_items"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
           <li class = "nav_items"><a href="/users/profile">account</a></li>
+          <li class = "nav_items"><a href="/questions/new">ask a question</a></li>
         <% else %>
           <li class = "nav_items"><a href="/users/login">login</a></li>
         <li class = "nav_items"><a href="/users/new">register</a></li>

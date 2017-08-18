@@ -19,6 +19,7 @@ get '/questions/:id' do
 end
 
 delete '/questions/:id' do
+  puts params
   @question = Question.find(params[:id])
   @question.destroy!
   redirect '/questions'

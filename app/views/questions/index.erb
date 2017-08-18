@@ -1,6 +1,6 @@
 <h1>QUESTIONS</h1>
 <div class='question list'>
-  <% @questions.each do |question| %>
+  <% @questions.reverse.each do |question| %>
 
       <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
       <p>
