@@ -8,11 +8,9 @@ get '/answers/:id' do
 end
 
 post '/questions/:id/answers' do
-  question = Question.find(params[:id])
+  @question = Question.find(params[:id])
   answer_list = params[:answer]
-  @answer = Answer.create(text: answer_list[:text])
-  puts @answer.inspect
-  puts @answer[:question_id]
+  @answer = Answer.create(text: answer_list[:text], question_id: params[:id])
   redirect "/questions/#{@question.id}"
 end
 
