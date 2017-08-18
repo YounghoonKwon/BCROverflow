@@ -11,7 +11,12 @@
 
 <form action='/questions/<%=@question.id %>/edit' method='GET'>
   <% if @question[:user_id] == session[:user_id] %>
-<!--     <input type="hidden" name="_method" value="put"> -->
     <input type="submit" value="Edit this Question">
+    <%end%>
+</form>
+
+
+  <% if logged_in? %>
+    <p><a href="/questions/<%= @question.id %>/answers/new">Answer this Question</a></p>
     <%end%>
 </form>
