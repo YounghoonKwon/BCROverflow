@@ -7,11 +7,31 @@ get '/users' do
 end
 
 get '/users/login' do
-  erb :'users/login'
+  if logged_in?
+    redirect '/users/:id'
+  else
+    erb :'users/login'
+  end
+end
+
+post '/users/login' do
+  puts params
+  puts '8' * 50
+  @user = User.authenticate(params[:user][:username], params[:user][:hashed_password])
+  puts @user
+  halt(401, erb(:'users/401')) unless @user
+  session[:user_id] = @user.id
+  redirect '/users/profile'
 end
 
 get '/users/new' do
   erb :'users/new'
+end
+
+post '/users/logout' do
+  halt(404, erb(:'users/404')) unless logged_in?
+  session[:user_id] = nil
+  redirect '/users/login'
 end
 
 get '/users/:id' do
@@ -20,19 +40,20 @@ end
 
 post '/users' do
   user_info = params[:user]
+  puts user_info
   user = User.new(first_name: user_info[:first_name], last_name: user_info[:last_name],  username: user_info[:username], email: user_info[:email], password: user_info[:hashed_password] )
 
   if user_info[:hashed_password].length == 0
     user.valid?
     password_error = "Password can't be blank"
   else
-    user.password = user_info[:password]
     user.save
   end
 
+
   if user.persisted?
     session[:user_id] = user.id
-    redirect 'users/stats'
+    redirect '/users'
   else
     errors = user.errors.full_messages.concat([password_error])
     report_create_errors(errors)
