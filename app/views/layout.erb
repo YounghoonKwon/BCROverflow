@@ -23,8 +23,14 @@
     <img src="image/bcroverflow-logo.png" style="width:266px;height:98px;">
       <ul class = "nav_bar">
         <li class = "nav_items"><a href="/">home</a></li>
-        <li class = "nav_items"><a href="/users/login">login</a></li>
+        <% if logged_in? %>
+          <li class = "nav_items"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
+          <li class = "nav_items"><a href="/users/profile">account</a></li>
+        <% else %>
+          <li class = "nav_items"><a href="/users/login">login</a></li>
         <li class = "nav_items"><a href="/users/new">register</a></li>
+        <% end %>
+        <li class = "nav_items"><a href="/questions">question list</a></li>
       </ul>
     </nav>
   </div>

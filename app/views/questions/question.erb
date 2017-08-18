@@ -1,3 +1,8 @@
 <h1><%= @question.title %></h1>
 <h1><%= @question.body %></h1>
 <h1><%= @question.created_at %></h1>
+<form action='/questions/<%=@question.id %>' method='POST'>
+  <input type="hidden"
+   value="delete">
+  <input type="submit" value="Delete this Question">
+</form>

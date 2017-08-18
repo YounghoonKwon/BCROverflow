@@ -18,6 +18,12 @@ get '/questions/:id' do
   erb :'questions/question'
 end
 
+delete '/questions/:id' do
+  @question = Question.find(params[:id])
+  @question.destroy!
+  redirect '/questions'
+end
+
 
 
 
