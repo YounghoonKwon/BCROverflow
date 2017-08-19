@@ -43,7 +43,7 @@
     <% if logged_in? %>
     <a href="/questions/<%= @question.id %>/answers/new">Answer this Question</a>
     <div class="answer">
-      <form method="post" action="/questions/<%= @question.id %>/answers">
+      <form class="submit_answer" method="post" action="/questions/<%= @question.id %>/answers">
         <input type="text" id="answer" name="answer[text]">
 
         <input type="submit" value="Submit Answer" tabindex="3" >
