@@ -1,12 +1,10 @@
-<h1>QUESTIONS</h1>
 <div class='question list'>
+  <h1>Questions</h1>
   <% @questions.reverse.each do |question| %>
-
-      <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
+      <p><a href='/questions/<%= question.id %>'><%= question.title %></a></p>
       <p>
         <span class='body'><%= question.body %></span>
         <span class='created'><%= question.created_at %></span>
       </p>
-
   <% end %>
 </div>

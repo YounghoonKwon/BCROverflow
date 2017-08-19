@@ -1,9 +1,10 @@
-<h1>Title : <%= @question.title %></h1>
-<h1>Body : <%= @question.body %></h1>
-<h1>Created :<%= @question.created_at %></h1>
-
-<h1>
-  <div>
+<div class="single_question_display">
+  <div class="question_display_headings">
+    <h2>Title: <%= @question.title %></h2>
+    <h2>Body: <%= @question.body %></h2>
+    <h2>Created: <%= @question.created_at %></h2>
+  </div>
+  <div class="votes">
     <form method="post" action="/questions/<%= @question.id %>/upvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
     </form>
@@ -12,37 +13,35 @@
       <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button downvote-button"></button>
     </form>
   </div>
-</h1>
-
-  <% if @question.answers.length != 0 %>
-  <ul><strong>Answer list</strong>
-  <% else %>
-  <ul><strong>Nobody answered to this question yet! wait fucker!!</strong>
-  <% end %>
-  <br>
-  <% @question.answers.each do |answer| %>
-  <li><%= answer.text %></li>
-  <li>created by: <%= answer.user.username %></li>
-  <li>created at: <%= answer.created_at %></li><br>
-  <% end %>
-</ul>
-
-
-<form action='/questions/<%=@question.id %>' method='POST'>
-  <% if @question[:user_id] == session[:user_id] %>
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete this Question">
-    <%end%>
-</form>
-
-<form action='/questions/<%=@question.id %>/edit' method='GET'>
-  <% if @question[:user_id] == session[:user_id] %>
-    <input type="submit" value="Edit this Question">
-    <%end%>
-</form>
-
-
-  <% if logged_in? %>
-    <p><a href="/questions/<%= @question.id %>/answers/new">Answer this Question</a></p>
-    <%end%>
-</form>
+  <div class="display_answers">
+    <% if @question.answers.length != 0 %>
+    <strong>Answer list</strong>
+    <% else %>
+    <strong>This question has not been answered yet!</strong>
+    <% end %>
+    <br>
+    <ul class="answer_list">
+      <% @question.answers.each do |answer| %>
+      <li><%= answer.text %></li>
+      <li>created by: <%= answer.user.username %></li>
+      <li>created at: <%= answer.created_at %></li><br>
+      <% end %>
+    </ul>
+  </div>
+  <div class="answer_buttons">
+    <form action='/questions/<%=@question.id %>' method='POST'>
+      <% if @question[:user_id] == session[:user_id] %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete this Question">
+      <%end%>
+    </form>
+    <form action='/questions/<%=@question.id %>/edit' method='GET'>
+      <% if @question[:user_id] == session[:user_id] %>
+      <input type="submit" value="Edit this Question">
+      <%end%>
+      <% if logged_in? %>
+      <p><a href="/questions/<%= @question.id %>/answers/new">Answer this Question</a></p>
+      <%end%>
+    </form>
+  </div>
+</div>
