@@ -1,0 +1,25 @@
+body {
+  background-color: #f0f0f0;
+}
+
+img {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+.nav_bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav_items {
+  display: inline;
+}
+
+.nav_items_c {
+  font-size: 20px;
+  display: inline;
+  margin-left: 100px;
+}
