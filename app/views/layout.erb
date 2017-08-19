@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
   <link rel="stylesheet" href="/css/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
   <link rel="stylesheet" href="/css/application.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -18,12 +10,14 @@
   <title>BCR Overflow</title>
 </head>
 <body>
-  <div>
+  <div class="logo">
+    <a href="/"><img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;"></a>
+  </div>
+  <div class="nav_bar_layout">
     <nav>
       <ul class = "nav_bar">
-        <li class="nav_items"><a href="/"><img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;"></a></li>
         <% if logged_in? %>
-          <h1>current user: <%= @current_user.username %></h1>
+          <p>Logged in as: <%= @current_user.username %></p>
           <li class = "nav_items_c"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
           <li class = "nav_items_c"><a href="/users/profile">account</a></li>
           <li class = "nav_items_c"><a href="/questions/new">ask a question</a></li>
