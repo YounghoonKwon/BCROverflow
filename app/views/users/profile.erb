@@ -1,54 +1,52 @@
-<h1>User Name : <%= @user.username%></h1><br>
-<h1>First Name : <%= @user.first_name%></h1>
-<h1>Last Name : <%= @user.last_name%></h1>
-<h1>E-mail : <%= @user.email%></h1>
-<div>
-  <p>Questions you've asked:</p>
-  <ul>
-    <% if @user.questions %>
+<div class="user_profile">
+  <h2 class="user_profile_headings">User Name : <%= @user.username%></h2>
+  <h2 class="user_profile_headings">First Name : <%= @user.first_name%></h2>
+  <h2 class="user_profile_headings">Last Name : <%= @user.last_name%></h2>
+  <h2 class="user_profile_headings">E-mail : <%= @user.email%></h2>
+  <div class="user_posed_questions">
+    <p>Questions you've asked:</p>
+    <ul>
+      <% if @user.questions %>
       <% @user.questions.each do |question|%>
       <li>Title: <a href="/questions/<%= question.id %>"><%= question.title %></a></li>
       <li>Asked: <%= question.created_at %></li>
       <% end %>
-    <% else %>
+      <% else %>
       <p>You haven't asked any questions yet!</p>
       <% end %>
-  </ul>
-</div>
-
-
-<div>
-  <p>Answers to your questions:</p>
-  <ul>
-    <% if @user.answers %>
-      <% @user.answers.each do |answer|%>
-      <li>Posting answered: <a href="/questions/<%= answer.question_id %>"><%= answer.question.title %></a></li>
-      <li>Answered by: <%= answer.user.username %>
-      <li>Answer: <%= answer.text %></li>
-      <li>Created: <%= answer.created_at %></li>
-      <br>
-      <% end %>
-    <% else %>
-      <p>You haven't asked any questions yet!</p>
-      <% end %>
-  </ul>
-</div>
-
-
-<div>
-  <p>Questions you have answered:</p>
-  <ul>
-    <% if @user.questions_answered %>
-      <% @user.questions_answered.each do |question|%>
-      <li>Posting answered: <a href="/questions/<%= question.id %>"><%= question.title %></a></li>
-      <li>Posting created by : <%= question.user.username %>
-      <li>Answered: <%= question.answers.find_by(user: current_user).text %></li>
-      <!-- <li>Created: <%#= current_user.answers_provided.find_by(question: question).text %></li> -->
-      <li>Created: <%= current_user.answers_provided.find_by(question: question).created_at %></li>
-      <br>
-      <% end %>
-    <% else %>
-      <p>You haven't asked any questions yet!</p>
-      <% end %>
-  </ul>
+    </ul>
+  </div>
+  <div class="answers_to_user_questions">
+    <p>Answers to your questions:</p>
+    <ul>
+      <% if @user.answers %>
+        <% @user.answers.each do |answer|%>
+        <li>Posting answered: <a href="/questions/<%= answer.question_id %>"><%= answer.question.title %></a></li>
+        <li>Answered by: <%= answer.user.username %>
+        <li>Answer: <%= answer.text %></li>
+        <li>Created: <%= answer.created_at %></li>
+        <br>
+        <% end %>
+      <% else %>
+        <p>You haven't asked any questions yet!</p>
+        <% end %>
+    </ul>
+  </div>
+  <div class="user_answered_questions">
+    <p>Questions you have answered:</p>
+    <ul>
+      <% if @user.questions_answered %>
+        <% @user.questions_answered.each do |question|%>
+        <li>Posting answered: <a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+        <li>Posting created by : <%= question.user.username %>
+        <li>Answered: <%= question.answers.find_by(user: current_user).text %></li>
+        <!-- <li>Created: <%#= current_user.answers_provided.find_by(question: question).text %></li> -->
+        <li>Created: <%= current_user.answers_provided.find_by(question: question).created_at %></li>
+        <br>
+        <% end %>
+      <% else %>
+        <p>You haven't asked any questions yet!</p>
+        <% end %>
+    </ul>
+  </div>
 </div>

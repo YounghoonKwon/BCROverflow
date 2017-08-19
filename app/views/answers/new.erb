@@ -1,7 +1,9 @@
-<form method="post" action="/questions/<%= @question.id %>/answers">
+<div class="answer">
+  <form method="post" action="/questions/<%= @question.id %>/answers">
 
-  <label>Answer:</label>
-  <input type="text" id="answer" name="answer[text]">
+    <label>Answer:</label>
+    <input type="text" id="answer" name="answer[text]">
 
-  <input type="submit" value="Submit Answer" tabindex="3" >
-</form>
+    <input type="submit" value="Submit Answer" tabindex="3" >
+  </form>
+</div>
