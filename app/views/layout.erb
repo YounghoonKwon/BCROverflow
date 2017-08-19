@@ -15,24 +15,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>BCR Overflow</title>
 </head>
 <body>
   <div>
     <nav>
-    <img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;">
       <ul class = "nav_bar">
-        <li class = "nav_items"><a href="/">home</a></li>
+        <li class="nav_items"><a href="/"><img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;"></a></li>
         <% if logged_in? %>
           <h1>current user: <%= @current_user.username %></h1>
-          <li class = "nav_items"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
-          <li class = "nav_items"><a href="/users/profile">account</a></li>
-          <li class = "nav_items"><a href="/questions/new">ask a question</a></li>
+          <li class = "nav_items_c"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
+          <li class = "nav_items_c"><a href="/users/profile">account</a></li>
+          <li class = "nav_items_c"><a href="/questions/new">ask a question</a></li>
         <% else %>
-          <li class = "nav_items"><a href="/users/login">login</a></li>
-        <li class = "nav_items"><a href="/users/new">register</a></li>
+          <li class = "nav_items_c"><a href="/users/login">login</a></li>
+        <li class = "nav_items_c"><a href="/users/new">register</a></li>
         <% end %>
-        <li class = "nav_items"><a href="/questions">question list</a></li>
+        <li class = "nav_items_c"><a href="/questions">question list</a></li>
       </ul>
     </nav>
   </div>
