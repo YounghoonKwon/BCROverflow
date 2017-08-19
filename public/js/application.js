@@ -1,8 +1,8 @@
 $(document).ready(function() {
-  // $(".answer_buttons").find("a").on('click', function(e){
-  //   e.preventDefault()
-  //   $("div[class='answer']").slideToggle()
-  // })
+  $(".answer_buttons").find("a").on('click', function(e){
+    e.preventDefault()
+    $("div[class='answer']").slideToggle()
+  })
   $(".submit_answer").on('submit', function(e) {
     e.preventDefault()
     var $this = $(this)

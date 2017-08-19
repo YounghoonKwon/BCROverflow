@@ -12,7 +12,7 @@ post '/questions/:id/answers' do
   answer_list = params[:answer]
   @answer = Answer.create(text: answer_list[:text], question_id: params[:id], user_id: session[:user_id])
   if request.xhr?
-    erb :'answers/new', layout: false, answer: @answer
+    erb :'questions/answer', layout: false, answer: @answer
   else
     redirect "/questions/#{@question.id}"
   end

@@ -6,11 +6,11 @@
   </div>
   <div class="votes">
     <form method="post" action="/questions/<%= @question.id %>/upvote" class="inline">
-      <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
+      <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
     </form>
     <%= @question.votes.sum(:value) %>
     <form method="post" action="/questions/<%= @question.id %>/downvote" class="inline">
-      <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button downvote-button"></button>
+      <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
     </form>
   </div>
   <div class="display_answers">
@@ -20,13 +20,24 @@
     <strong>This question has not been answered yet!</strong>
     <% end %>
     <br>
-    <ul class="answer_list">
-      <% @question.answers.each do |answer| %>
-      <li><%= answer.text %></li>
-      <li>created by: <%= answer.user.username %></li>
-      <li>created at: <%= answer.created_at %></li><br>
-      <% end %>
-    </ul>
+    <div>
+      <ul class="answer_list">
+        <% @question.answers.each do |answer| %>
+        <div class="votes">
+          <form method="post" action="/answers/<%= answer.id %>/upvote" class="inline">
+            <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
+          </form>
+          <%= answer.votes.sum(:value) %>
+          <form method="post" action="/answers/<%= answer.id %>/downvote" class="inline">
+            <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
+          </form>
+        </div>
+        <li><%= answer.text %></li>
+        <li>created by: <%= answer.user.username %></li>
+        <li>created at: <%= answer.created_at %></li><br>
+        <% end %>
+      </ul>
+    </div>
   </div>
   <div class="answer_buttons">
     <form action='/questions/<%=@question.id %>' method='POST'>
@@ -44,7 +55,7 @@
     <a href="/questions/<%= @question.id %>/answers/new">Answer this Question</a>
     <div class="answer">
       <form class="submit_answer" method="post" action="/questions/<%= @question.id %>/answers">
-        <input type="text" id="answer" name="answer[text]">
+        <input type="text" id="answer" name="answer[text]" size="40">
 
         <input type="submit" value="Submit Answer" tabindex="3" >
       </form>

@@ -73,6 +73,43 @@ put '/questions/:id' do
   redirect "questions/#{@question.id}"
 end
 
+post '/answers/:id/upvote' do
+  # if session[:user_id] != nil
+    @answer = Answer.find(params[:id])
+    @answer.votes.create(user_id: session[:user_id], value: 1)
+    redirect "/questions/#{@answer.question_id}"
+
+    #   if request.accept? 'application/json'
+    #     question.votes.count.to_json
+    #   else
+    #     question.votes.count.to_s
+    #   end
+    # else
+    #   redirect "/questions"
+    # end
+  # else
+  #   redirect '/users/login'
+  # end
+end
+
+post '/answers/:id/downvote' do
+  # if session[:user_id] != nil
+    @answer = Answer.find(params[:id])
+    @answer.votes.create(user_id: session[:user_id], value: -1)
+    redirect "/questions/#{@answer.question_id}"
+
+    #   if request.accept? 'application/json'
+    #     question.votes.count.to_json
+    #   else
+    #     question.votes.count.to_s
+    #   end
+    # else
+    #   redirect "/questions"
+    # end
+  # else
+  #   redirect '/users/login'
+  # end
+end
 
 
 
