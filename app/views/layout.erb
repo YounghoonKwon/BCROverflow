@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="/js/application.js"></script>
@@ -10,23 +11,27 @@
   <title>BCR Overflow</title>
 </head>
 <body>
-  <div class="logo">
-    <a href="/"><img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;"></a>
-  </div>
-  <div class="nav_bar_layout">
-    <nav>
-      <ul class = "nav_bar">
+  <nav class="navbar navbar-inverse">
+  <div class="navbar-header">
+      <a class="navbar-brand" href="/">BCR Overflow</a>
+    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav">
         <% if logged_in? %>
-        <li class="nav_items"><p><a href="/users/profile"><%= @current_user.username %></a></p></li>
-        <li class = "nav_items"><form action="/users/logout" method="post"><input type="submit" value="Logout"></form></li>
-        <li class = "nav_items"><a href="/questions/new">ask a question</a></li>
+        <li><a href="/users/profile"><%= @current_user.username %></a></li>
+        <li><a href="/questions/new">ask a question</a></li>
+        <li><form class="form-inline my-2 my-lg-0" action="/users/logout" method="post"><input class="form-control mr-sm-2" type="submit" value="Logout"></form></li>
         <% else %>
-        <li class = "nav_items"><a href="/users/login">login</a></li>
-        <li class = "nav_items"><a href="/users/new">register</a></li>
+        <li><a href="/users/login">login</a></li>
+        <li><a href="/users/new">register</a></li>
         <% end %>
       </ul>
+    </div>
     </nav>
-  </div>
   <%= yield %>
 </body>
 </html>
+
+
+  <!--  <img src="/image/bcroverflow-logo.png" style="width:266px;height:98px;" class="d-inline-block align-top" alt="">
+
