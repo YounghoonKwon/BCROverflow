@@ -1,5 +1,5 @@
 <div class='question list'>
-  <h1>Questions</h1>
+  <h1>Questions asked recently</h1>
   <% @questions.reverse.each do |question| %>
       <p><a href='/questions/<%= question.id %>'><%= question.title %></a></p>
       <p>

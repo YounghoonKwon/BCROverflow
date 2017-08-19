@@ -8,18 +8,40 @@ img {
   border-width: 2px;
 }
 
+.nav_bar_layout {
+  position: top;
+}
+
 .nav_bar {
   list-style-type: none;
   margin: 0;
+  margin-right: 25%;
+  margin-bottom: 25%;
   padding: 0;
+  overflow: hidden;
 }
 
 .nav_items {
   display: inline;
 }
 
-.nav_items_c {
+.nav_items {
   font-size: 20px;
   display: inline;
   margin-left: 100px;
+  text-align: center;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+li, form { 
+  display: inline; 
+  float: right;
 }*/
