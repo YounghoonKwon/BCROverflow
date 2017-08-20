@@ -1,5 +1,17 @@
+<div class="votes">
+  <form class="answer_upvote" method="post" action="/answers/<%= @answer.id %>/upvote" class="inline">
+    <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
+  </form>
+  <div class="answer_vote_count">
+    answer score: 0
+  </div>
+  <form class="answer_downvote" method="post" action="/answers/<%= @answer.id %>/downvote" class="inline">
+    <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
+  </form>
+</div>
+
 <li><%= @answer.text %></li>
 <li>created by: <%= @answer.user.username %></li>
-<li>created at: <%= @answer.created_at %></li><br>
+<li>created at: <%= @answer.created_at.strftime("%m-%e-%y %H:%M") %></li><br>
 
 

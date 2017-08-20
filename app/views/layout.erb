@@ -13,13 +13,13 @@
 <body>
   <nav class="navbar navbar-inverse">
   <div class="navbar-header">
-      <a class="navbar-brand" href="/">BCR Overflow</a>
+      <a class="navbar-brand" style="color:white" href="/">BCR Overflow</a>
     </div>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" style="background-color:darkblue" id="navbarSupportedContent">
       <ul class="nav navbar-nav">
         <% if logged_in? %>
-        <li><a href="/users/profile"><%= @current_user.username %></a></li>
-        <li><a href="/questions/new">ask a question</a></li>
+        <li><a class="glyphicon glyphicon-user" style="color:white" href="/users/profile"><%=@current_user.username %></a></li>
+        <li><a href="/questions/new" style="color:white">ask a question</a></li>
         <li><form class="form-inline my-2 my-lg-0" action="/users/logout" method="post"><input class="form-control mr-sm-2" type="submit" value="Logout"></form></li>
         <% else %>
         <li><a href="/users/login">login</a></li>

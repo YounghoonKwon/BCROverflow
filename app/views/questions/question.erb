@@ -2,19 +2,21 @@
   <div class="question_display_headings">
     <h2>Title: <%= @question.title %></h2>
     <h2>Body: <%= @question.body %></h2>
-    <h2>Created: <%= @question.created_at %></h2>
+    <h2>Created: <%= @question.created_at.strftime("%m-%e-%y %H:%M") %></h2>
   </div>
+
   <div class="votes">
     <form class="question_upvote" method="post" action="/questions/<%= @question.id %>/upvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
     </form>
-    <div class="question_vote_count">
-      <%= @question.votes.sum(:value) %>
-    </div>
     <form class="question_downvote" method="post" action="/questions/<%= @question.id %>/downvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
     </form>
   </div>
+
+  <div class="question_vote_count">
+    <%= "question score: " + @question.votes.sum(:value).to_s %>
+   </div>
   <div class="display_answers">
     <% if @question.answers.length != 0 %>
     <strong>Answer list</strong>
@@ -29,16 +31,16 @@
           <form class="answer_upvote" method="post" action="/answers/<%= answer.id %>/upvote" class="inline">
             <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
           </form>
-          <div class="answer_vote_count">
-          <%= answer.votes.sum(:value) %>
-          </div>
           <form class="answer_downvote" method="post" action="/answers/<%= answer.id %>/downvote" class="inline">
             <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
           </form>
         </div>
+        <div class="answer_vote_count">
+          <%= "answer score: " + answer.votes.sum(:value).to_s %>
+        </div>
         <li><%= answer.text %></li>
         <li>created by: <%= answer.user.username %></li>
-        <li>created at: <%= answer.created_at %></li><br>
+        <li>created at: <%= answer.created_at.strftime("%m-%e-%y %H:%M") %></li><br>
         <% end %>
       </ul>
     </div>

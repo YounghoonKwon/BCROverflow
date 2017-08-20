@@ -7,3 +7,10 @@ input[id="answer"] {
   padding: 1px;
 }
 
+* {
+ font-family: Futura;
+}
+
+body {
+  margin-left : 50ex;
+}
