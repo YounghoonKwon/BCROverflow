@@ -1,0 +1,16 @@
+div[class="answer"] {
+  display: none;
+}
+
+input[id="answer"] {
+  height: 28px;
+  padding: 1px;
+}
+
+* {
+ font-family: Futura;
+}
+
+body {
+  margin-left : 50ex;
+}

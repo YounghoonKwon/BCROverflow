@@ -1,10 +1,8 @@
 <div class='question list'>
   <h1>Questions asked recently</h1>
   <% @questions.reverse.each do |question| %>
-      <p><a href='/questions/<%= question.id %>'><%= question.title %></a></p>
-      <p>
-        <span class='body'><%= question.body %></span>
-        <span class='created'><%= question.created_at %></span>
-      </p>
+      <strong><a href='/questions/<%= question.id %>'><%= question.title %></a><br></strong>
+      <span class='italic'>Question Score: <%= question.votes.reduce(0) {|sum, vote| sum += vote.value } %></span><br>
+      <span class='created'>Posted at: <%= question.created_at.strftime("%m-%e-%y %H:%M") %></span><br><br>
   <% end %>
 </div>
