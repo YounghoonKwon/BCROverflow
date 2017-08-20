@@ -33,38 +33,24 @@ post '/questions/:id/upvote' do
   # if session[:user_id] != nil
     @question = Question.find(params[:id])
     @question.votes.create(user_id: session[:user_id], value: 1)
-    redirect "/questions/#{@question.id}"
-
-    #   if request.accept? 'application/json'
-    #     question.votes.count.to_json
-    #   else
-    #     question.votes.count.to_s
-    #   end
-    # else
-    #   redirect "/questions"
-    # end
-  # else
-  #   redirect '/users/login'
-  # end
+    if request.xhr?
+      vote_total = @question.votes.reduce(0) {|sum, vote| sum += vote.value }
+      return vote_total.to_s
+    else
+      redirect "/questions/#{@question.id}"
+    end
 end
 
 post '/questions/:id/downvote' do
   # if session[:user_id] != nil
     @question = Question.find(params[:id])
     @question.votes.create(user_id: session[:user_id], value: -1)
-    redirect "/questions/#{@question.id}"
-
-    #   if request.accept? 'application/json'
-    #     question.votes.count.to_json
-    #   else
-    #     question.votes.count.to_s
-    #   end
-    # else
-    #   redirect "/questions"
-    # end
-  # else
-  #   redirect '/users/login'
-  # end
+    if request.xhr?
+      vote_total = @question.votes.reduce(0) {|sum, vote| sum += vote.value }
+      return vote_total.to_s
+    else
+      redirect "/questions/#{@question.id}"
+    end
 end
 
 put '/questions/:id' do
@@ -77,38 +63,25 @@ post '/answers/:id/upvote' do
   # if session[:user_id] != nil
     @answer = Answer.find(params[:id])
     @answer.votes.create(user_id: session[:user_id], value: 1)
-    redirect "/questions/#{@answer.question_id}"
-
-    #   if request.accept? 'application/json'
-    #     question.votes.count.to_json
-    #   else
-    #     question.votes.count.to_s
-    #   end
-    # else
-    #   redirect "/questions"
-    # end
-  # else
-  #   redirect '/users/login'
-  # end
+    if request.xhr?
+      vote_total = @answer.votes.reduce(0) {|sum, vote| sum += vote.value }
+      return vote_total.to_s
+    else
+      redirect "/questions/#{@answer.question_id}"
+    end
 end
 
 post '/answers/:id/downvote' do
   # if session[:user_id] != nil
     @answer = Answer.find(params[:id])
     @answer.votes.create(user_id: session[:user_id], value: -1)
-    redirect "/questions/#{@answer.question_id}"
+    if request.xhr?
+      vote_total = @answer.votes.reduce(0) {|sum, vote| sum += vote.value }
+      return vote_total.to_s
+    else
+      redirect "/questions/#{@answer.question_id}"
+    end
 
-    #   if request.accept? 'application/json'
-    #     question.votes.count.to_json
-    #   else
-    #     question.votes.count.to_s
-    #   end
-    # else
-    #   redirect "/questions"
-    # end
-  # else
-  #   redirect '/users/login'
-  # end
 end
 
 

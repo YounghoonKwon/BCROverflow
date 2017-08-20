@@ -5,11 +5,13 @@
     <h2>Created: <%= @question.created_at %></h2>
   </div>
   <div class="votes">
-    <form method="post" action="/questions/<%= @question.id %>/upvote" class="inline">
+    <form class="question_upvote" method="post" action="/questions/<%= @question.id %>/upvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
     </form>
-    <%= @question.votes.sum(:value) %>
-    <form method="post" action="/questions/<%= @question.id %>/downvote" class="inline">
+    <div class="question_vote_count">
+      <%= @question.votes.sum(:value) %>
+    </div>
+    <form class="question_downvote" method="post" action="/questions/<%= @question.id %>/downvote" class="inline">
       <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
     </form>
   </div>
@@ -24,11 +26,13 @@
       <ul class="answer_list">
         <% @question.answers.each do |answer| %>
         <div class="votes">
-          <form method="post" action="/answers/<%= answer.id %>/upvote" class="inline">
+          <form class="answer_upvote" method="post" action="/answers/<%= answer.id %>/upvote" class="inline">
             <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-up"></button>
           </form>
+          <div class="answer_vote_count">
           <%= answer.votes.sum(:value) %>
-          <form method="post" action="/answers/<%= answer.id %>/downvote" class="inline">
+          </div>
+          <form class="answer_downvote" method="post" action="/answers/<%= answer.id %>/downvote" class="inline">
             <button type="submit" name="submit_param" value="submit_value" class="glyphicon glyphicon-chevron-down"></button>
           </form>
         </div>
