@@ -16,10 +16,7 @@ get '/users/login' do
 end
 
 post '/users/login' do
-  puts params
-  puts '8' * 50
   @user = User.authenticate(params[:user][:username], params[:user][:hashed_password])
-  puts @user
   halt(401, erb(:'users/401')) unless @user
   session[:user_id] = @user.id
   redirect '/users/profile'
