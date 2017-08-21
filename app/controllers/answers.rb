@@ -17,9 +17,3 @@ post '/questions/:id/answers' do
     redirect "/questions/#{@question.id}"
   end
 end
-
-  # if request.accept? 'application/json'
-    #   @answer.to_json
-    # else
-    #   @answer.to_s
-    # end

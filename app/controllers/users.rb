@@ -16,10 +16,7 @@ get '/users/login' do
 end
 
 post '/users/login' do
-  puts params
-  puts '8' * 50
   @user = User.authenticate(params[:user][:username], params[:user][:hashed_password])
-  puts @user
   halt(401, erb(:'users/401')) unless @user
   session[:user_id] = @user.id
   redirect '/users/profile'
@@ -44,7 +41,6 @@ post '/users' do
   user_info = params[:user]
   puts user_info
   user = User.new(first_name: user_info[:first_name], last_name: user_info[:last_name],  username: user_info[:username], email: user_info[:email], password: user_info[:hashed_password] )
-
   if user_info[:hashed_password].length == 0
     user.valid?
     password_error = "Password can't be blank"
