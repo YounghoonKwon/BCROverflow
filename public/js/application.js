@@ -22,6 +22,7 @@ var submit_answer = function(e) {
       method: 'POST',
       data: $this.serialize()
     }).done(function(response){
+      $('.question_message').text("Answer list")
       $('.answer_list').append(response)
     })
   }
